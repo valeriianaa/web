@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Fecha:
+  = @servicio.fecha
+p
+  strong Horasalida:
+  = @servicio.horaSalida
+p
+  strong Horallegada:
+  = @servicio.horaLlegada
+
+= link_to 'Edit', edit_servicio_path(@servicio)
+'|
+= link_to 'Back', servicios_path

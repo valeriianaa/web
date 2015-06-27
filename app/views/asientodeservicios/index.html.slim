@@ -1,0 +1,23 @@
+h1 Listing asiento_de_servicios
+
+table
+  thead
+    tr
+      th Nro
+      th Estado
+      th
+      th
+      th
+
+  tbody
+    - @asiento_de_servicios.each do |asiento_de_servicio|
+      tr
+        td = asiento_de_servicio.nro
+        td = asiento_de_servicio.estado
+        td = link_to 'Show', asiento_de_servicio
+        td = link_to 'Edit', edit_asiento_de_servicio_path(asiento_de_servicio)
+        td = link_to 'Destroy', asiento_de_servicio, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Asiento de servicio', new_asiento_de_servicio_path

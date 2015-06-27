@@ -1,0 +1,23 @@
+h1 Listing paradas
+
+table
+  thead
+    tr
+      th Nombre
+      th Direccion
+      th
+      th
+      th
+
+  tbody
+    - @paradas.each do |parada|
+      tr
+        td = parada.nombre
+        td = parada.direccion
+        td = link_to 'Show', parada
+        td = link_to 'Edit', edit_parada_path(parada)
+        td = link_to 'Destroy', parada, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Parada', new_parada_path

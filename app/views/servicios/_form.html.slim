@@ -1,0 +1,18 @@
+= form_for @servicio do |f|
+  - if @servicio.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@servicio.errors.count, "error")} prohibited this servicio from being saved:"
+      ul
+        - @servicio.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :fecha
+    = f.date_select :fecha
+  .field
+    = f.label :horaSalida
+    = f.time_select :horaSalida
+  .field
+    = f.label :horaLlegada
+    = f.time_select :horaLlegada
+  .actions = f.submit

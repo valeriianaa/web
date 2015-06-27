@@ -1,11 +1,15 @@
-  unidad
-  parada
-  ciudad
-  itinerario
-  servicio
-  datosdepasaje
-  asientodeservicio
-  pasajero
-  empresa
-  pasaje
-  reserva
+# rails generate scaffold unidad nro:integer cantAsientos:integer
+rails generate scaffold asientoDeServicio nro:integer estado:boolean
+rails generate scaffold ciudad nombre:string
+rails generate scaffold parada nombre:string direccion:string
+rails generate scaffold itinerario nombre:string
+rails generate scaffold pasajero dni:string nombre:string
+rails generate scaffold servicio fecha:date horaSalida:time horaLlegada:time
+  
+
+# tipoDeServicio
+# datosdepasaje
+# pasajero
+# empresa
+# pasaje
+# reserva

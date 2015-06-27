@@ -1,0 +1,21 @@
+h1 Listing itinerarios
+
+table
+  thead
+    tr
+      th Nombre
+      th
+      th
+      th
+
+  tbody
+    - @itinerarios.each do |itinerario|
+      tr
+        td = itinerario.nombre
+        td = link_to 'Show', itinerario
+        td = link_to 'Edit', edit_itinerario_path(itinerario)
+        td = link_to 'Destroy', itinerario, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Itinerario', new_itinerario_path

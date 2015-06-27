@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha: 2015-06-27
+  horaSalida: 2015-06-27 19:49:30
+  horaLlegada: 2015-06-27 19:49:30
+
+two:
+  fecha: 2015-06-27
+  horaSalida: 2015-06-27 19:49:30
+  horaLlegada: 2015-06-27 19:49:30

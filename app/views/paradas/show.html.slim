@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @parada.nombre
+p
+  strong Direccion:
+  = @parada.direccion
+
+= link_to 'Edit', edit_parada_path(@parada)
+'|
+= link_to 'Back', paradas_path

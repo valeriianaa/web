@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Dni:
+  = @pasajero.dni
+p
+  strong Nombre:
+  = @pasajero.nombre
+
+= link_to 'Edit', edit_pasajero_path(@pasajero)
+'|
+= link_to 'Back', pasajeros_path

@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Nro:
+  = @asiento_de_servicio.nro
+p
+  strong Estado:
+  = @asiento_de_servicio.estado
+
+= link_to 'Edit', edit_asiento_de_servicio_path(@asiento_de_servicio)
+'|
+= link_to 'Back', asiento_de_servicios_path
