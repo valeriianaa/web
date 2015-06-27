@@ -1,0 +1,9 @@
+= form_for @datos_de_pasaje do |f|
+  - if @datos_de_pasaje.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@datos_de_pasaje.errors.count, "error")} prohibited this datos_de_pasaje from being saved:"
+      ul
+        - @datos_de_pasaje.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

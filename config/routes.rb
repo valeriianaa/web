@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :datos_de_pasajes
   resources :tipo_de_servicios
   resources :servicios
   resources :pasajeros

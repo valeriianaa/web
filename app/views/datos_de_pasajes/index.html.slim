@@ -1,0 +1,19 @@
+h1 Listing datos_de_pasajes
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @datos_de_pasajes.each do |datos_de_pasaje|
+      tr
+        td = link_to 'Show', datos_de_pasaje
+        td = link_to 'Edit', edit_datos_de_pasaje_path(datos_de_pasaje)
+        td = link_to 'Destroy', datos_de_pasaje, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Datos de pasaje', new_datos_de_pasaje_path

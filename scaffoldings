@@ -6,9 +6,9 @@
 # rails generate scaffold pasajero dni:string nombre:string
 # rails generate scaffold servicio fecha:date horaSalida:time horaLlegada:time
 # rails generate scaffold tipoDeServicio nombre:string
+# rails generate scaffold datosDePasaje
 
-# datosdepasaje
-# pasajero
+
 # empresa
 # pasaje
 # reserva
