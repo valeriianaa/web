@@ -1,0 +1,15 @@
+= form_for @unidad do |f|
+  - if @unidad.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@unidad.errors.count, "error")} prohibited this unidad from being saved:"
+      ul
+        - @unidad.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :nro
+    = f.number_field :nro
+  .field
+    = f.label :cantAsientos
+    = f.number_field :cantAsientos
+  .actions = f.submit

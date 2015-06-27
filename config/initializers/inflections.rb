@@ -14,3 +14,16 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'unidad', 'unidades'
+  inflect.irregular 'parada', 'paradas'
+  inflect.irregular 'ciudad', 'ciudades'
+  inflect.irregular 'itinerario', 'itinerarios'
+  inflect.irregular 'servicio', 'servicios'
+  inflect.irregular 'datosdepasaje', 'datosdepasajes'
+  inflect.irregular 'asientodeservicio', 'asientodeservicios'
+  inflect.irregular 'pasajero', 'pasajeros'
+  inflect.irregular 'empresa', 'empresas'
+  inflect.irregular 'pasaje', 'pasajes'
+  inflect.irregular 'reserva', 'reservas'
+end

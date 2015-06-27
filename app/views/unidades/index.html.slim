@@ -1,0 +1,23 @@
+h1 Listing unidades
+
+table
+  thead
+    tr
+      th Nro
+      th Cantasientos
+      th
+      th
+      th
+
+  tbody
+    - @unidades.each do |unidad|
+      tr
+        td = unidad.nro
+        td = unidad.cantAsientos
+        td = link_to 'Show', unidad
+        td = link_to 'Edit', edit_unidad_path(unidad)
+        td = link_to 'Destroy', unidad, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Unidad', new_unidad_path

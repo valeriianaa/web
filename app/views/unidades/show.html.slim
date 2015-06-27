@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Nro:
+  = @unidad.nro
+p
+  strong Cantasientos:
+  = @unidad.cantAsientos
+
+= link_to 'Edit', edit_unidad_path(@unidad)
+'|
+= link_to 'Back', unidades_path
