@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @tipo_de_servicio.nombre
+
+= link_to 'Edit', edit_tipo_de_servicio_path(@tipo_de_servicio)
+'|
+= link_to 'Back', tipo_de_servicios_path

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tipo_de_servicios
   resources :servicios
   resources :pasajeros
   resources :itinerarios

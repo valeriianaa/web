@@ -1,0 +1,21 @@
+h1 Listing tipo_de_servicios
+
+table
+  thead
+    tr
+      th Nombre
+      th
+      th
+      th
+
+  tbody
+    - @tipo_de_servicios.each do |tipo_de_servicio|
+      tr
+        td = tipo_de_servicio.nombre
+        td = link_to 'Show', tipo_de_servicio
+        td = link_to 'Edit', edit_tipo_de_servicio_path(tipo_de_servicio)
+        td = link_to 'Destroy', tipo_de_servicio, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Tipo de servicio', new_tipo_de_servicio_path
