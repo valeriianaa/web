@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.string   "estado",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "unidades", force: :cascade do |t|
     t.integer  "nro",          limit: 4
     t.integer  "cantAsientos", limit: 4
