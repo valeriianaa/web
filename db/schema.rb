@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628023810) do
+ActiveRecord::Schema.define(version: 20150628203134) do
 
   create_table "asiento_de_servicios", force: :cascade do |t|
     t.integer  "nro",        limit: 4
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20150628023810) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "itinerarios_paradas", id: false, force: :cascade do |t|
+    t.integer "itinerario_id", limit: 4
+    t.integer "parada_id",     limit: 4
+  end
+
+  add_index "itinerarios_paradas", ["itinerario_id"], name: "index_itinerarios_paradas_on_itinerario_id", using: :btree
+  add_index "itinerarios_paradas", ["parada_id"], name: "index_itinerarios_paradas_on_parada_id", using: :btree
 
   create_table "paradas", force: :cascade do |t|
     t.string   "nombre",     limit: 255

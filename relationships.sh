@@ -8,6 +8,25 @@
 #   end
 # end
 
+# ======================
+# Para muchos a muchos
+# ======================
+
+# class CreateItinerariosParadas < ActiveRecord::Migration
+#   def change
+#     create_table :itinerarios_paradas, id: false do |t|
+#       t.belongs_to :itinerario, index: true
+#       t.belongs_to :parada, index: true
+#     end
+#   end
+# end
+
 rails generate migration AddAsientoDeServicioRefToDatosDePasaje asiento_de_servicio:references
 
 rails generate migration AddPasajeroRefToDatosDePasaje pasajero:references
+
+rails generate migration AddItinerarioRefToParada itinerario:references
+
+rails generate migration Add Itinerario RefTo Parada itinerario:references
+
+rails generate migration create_restaurants_users
