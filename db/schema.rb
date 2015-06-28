@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628203134) do
+ActiveRecord::Schema.define(version: 20150628223545) do
 
   create_table "asiento_de_servicios", force: :cascade do |t|
     t.integer  "nro",        limit: 4
@@ -55,7 +55,10 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.string   "direccion",  limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "ciudad_id",  limit: 4
   end
+
+  add_index "paradas", ["ciudad_id"], name: "index_paradas_on_ciudad_id", using: :btree
 
   create_table "pasajeros", force: :cascade do |t|
     t.string   "dni",        limit: 255
@@ -64,22 +67,29 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "servicios", force: :cascade do |t|
-    t.date     "fecha"
-    t.time     "horaSalida"
-    t.time     "horaLlegada"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "tipo_de_servicios", force: :cascade do |t|
-    t.string   "nombre",     limit: 255
+  create_table "reservas", force: :cascade do |t|
+    t.string   "estado",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  create_table "reservas", force: :cascade do |t|
-    t.string   "estado",     limit: 255
+  create_table "servicios", force: :cascade do |t|
+    t.date     "fecha"
+    t.time     "horaSalida"
+    t.time     "horaLlegada"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "unidad_id",           limit: 4
+    t.integer  "itinerario_id",       limit: 4
+    t.integer  "tipo_de_servicio_id", limit: 4
+  end
+
+  add_index "servicios", ["itinerario_id"], name: "index_servicios_on_itinerario_id", using: :btree
+  add_index "servicios", ["tipo_de_servicio_id"], name: "index_servicios_on_tipo_de_servicio_id", using: :btree
+  add_index "servicios", ["unidad_id"], name: "index_servicios_on_unidad_id", using: :btree
+
+  create_table "tipo_de_servicios", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -93,4 +103,8 @@ ActiveRecord::Schema.define(version: 20150628203134) do
 
   add_foreign_key "datos_de_pasajes", "asiento_de_servicios"
   add_foreign_key "datos_de_pasajes", "pasajeros"
+  add_foreign_key "paradas", "ciudades"
+  add_foreign_key "servicios", "itinerarios"
+  add_foreign_key "servicios", "tipo_de_servicios"
+  add_foreign_key "servicios", "unidades"
 end
