@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Estado:
+  = @reserva.estado
+
+= link_to 'Edit', edit_reserva_path(@reserva)
+'|
+= link_to 'Back', reservas_path
