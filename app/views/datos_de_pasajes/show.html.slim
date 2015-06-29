@@ -1,5 +1,22 @@
 p#notice = notice
 
+p vamos a suponer que soy un pasajero
+
+p y un origen
+
+p y un destino
+
+p y otra fruta rara
+
+p
+  strong Numero: 
+  = @datos_de_pasaje.numero
+
+p
+  strong Numero de reserva: 
+  = @datos_de_pasaje.reserva_numero
+
+/= render :partial => '/reservas/form', :log_entry => @datos_de_pasaje.Reservas.new
 
 = link_to 'Edit', edit_datos_de_pasaje_path(@datos_de_pasaje)
 '|

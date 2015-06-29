@@ -4,6 +4,11 @@ p
   strong Estado:
   = @reserva.estado
 
+p
+  strong Id de dato de pasaje:
+  = @reserva.dato_pasaje_numero
+
+
 = link_to 'Edit', edit_reserva_path(@reserva)
 '|
 = link_to 'Back', reservas_path

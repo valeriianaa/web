@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628203134) do
+ActiveRecord::Schema.define(version: 20150629222415) do
 
   create_table "asiento_de_servicios", force: :cascade do |t|
     t.integer  "nro",        limit: 4
@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.datetime "updated_at",                       null: false
     t.integer  "asiento_de_servicio_id", limit: 4
     t.integer  "pasajero_id",            limit: 4
+    t.integer  "reserva_id",             limit: 4
   end
 
   add_index "datos_de_pasajes", ["asiento_de_servicio_id"], name: "index_datos_de_pasajes_on_asiento_de_servicio_id", using: :btree
   add_index "datos_de_pasajes", ["pasajero_id"], name: "index_datos_de_pasajes_on_pasajero_id", using: :btree
+  add_index "datos_de_pasajes", ["reserva_id"], name: "index_datos_de_pasajes_on_reserva_id", using: :btree
 
   create_table "itinerarios", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -64,6 +66,15 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "reservas", force: :cascade do |t|
+    t.string   "estado",             limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "datos_de_pasaje_id", limit: 4
+  end
+
+  add_index "reservas", ["datos_de_pasaje_id"], name: "index_reservas_on_datos_de_pasaje_id", using: :btree
+
   create_table "servicios", force: :cascade do |t|
     t.date     "fecha"
     t.time     "horaSalida"
@@ -78,12 +89,6 @@ ActiveRecord::Schema.define(version: 20150628203134) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "reservas", force: :cascade do |t|
-    t.string   "estado",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "unidades", force: :cascade do |t|
     t.integer  "nro",          limit: 4
     t.integer  "cantAsientos", limit: 4
@@ -93,4 +98,6 @@ ActiveRecord::Schema.define(version: 20150628203134) do
 
   add_foreign_key "datos_de_pasajes", "asiento_de_servicios"
   add_foreign_key "datos_de_pasajes", "pasajeros"
+  add_foreign_key "datos_de_pasajes", "reservas"
+  add_foreign_key "reservas", "datos_de_pasajes"
 end

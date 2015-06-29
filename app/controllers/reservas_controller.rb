@@ -10,11 +10,13 @@ class ReservasController < ApplicationController
   # GET /reservas/1
   # GET /reservas/1.json
   def show
+
   end
 
   # GET /reservas/new
   def new
     @reserva = Reserva.new
+    @datos_de_pasaje = DatosDePasaje.new
   end
 
   # GET /reservas/1/edit
@@ -24,7 +26,10 @@ class ReservasController < ApplicationController
   # POST /reservas
   # POST /reservas.json
   def create
+    @datos_de_pasaje = DatosDePasaje.create
     @reserva = Reserva.new(reserva_params)
+    @reserva.datos_de_pasaje_id = @datos_de_pasaje.id
+    
     
     respond_to do |format|
       if @reserva.save

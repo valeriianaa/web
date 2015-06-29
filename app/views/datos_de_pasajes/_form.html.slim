@@ -5,5 +5,8 @@
       ul
         - @datos_de_pasaje.errors.full_messages.each do |message|
           li = message
-
+  .field
+      = f.label 'SOy un dato de pasaje'
+  .field
+      = f.label @datos_de_pasaje.numero
   .actions = f.submit
