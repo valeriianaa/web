@@ -8,9 +8,9 @@
 #   end
 # end
 
-# ======================
-# Para muchos a muchos
-# ======================
+# ========================
+# = Para muchos a muchos =
+# ========================
 
 # class CreateItinerariosParadas < ActiveRecord::Migration
 #   def change
@@ -27,6 +27,13 @@ rails generate migration AddPasajeroRefToDatosDePasaje pasajero:references
 
 rails generate migration AddItinerarioRefToParada itinerario:references
 
-rails generate migration Add Itinerario RefTo Parada itinerario:references
+# Añadir una Ciudad como referencia en Parada, campo:reference
+rails generate migration AddCiudadRefToParada ciudad:references
+
+rails generate migration AddUnidadRefToServicio unidad:references
+
+rails generate migration AddItinerarioRefToServicio itinerario:references
+
+rails generate migration AddTipoDeServicioRefToServicio tipo_de_servicio:references
 
 rails generate migration create_restaurants_users
