@@ -2,7 +2,6 @@ class DatosDePasaje < ActiveRecord::Base
 	belongs_to :asiento_de_servicio
 	belongs_to :pasajero
 
-
 	def numero
 		if self.id == nil
 			dato = DatosDePasaje.last.id
@@ -27,5 +26,5 @@ class DatosDePasaje < ActiveRecord::Base
 	# 		return self.id
 	# 	end
 	# end
-
+	belongs_to :servicio
 end
