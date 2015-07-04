@@ -1,5 +1,6 @@
 class ReservasController < ApplicationController
   before_action :set_reserva, only: [:show, :edit, :update, :destroy]
+  #include DatosDePasajesController
 
   # GET /reservas
   # GET /reservas.json
@@ -26,10 +27,12 @@ class ReservasController < ApplicationController
   # POST /reservas
   # POST /reservas.json
   def create
-    @datos_de_pasaje = DatosDePasaje.create
+    #@dp = DatosDePasajesController.new
+    @datos_de_pasaje = DatosDePasaje.create(asiento_de_servicio_id: 5, pasajero_id: 1)
+    #@datos_de_pasaje = @dp.create
     @reserva = Reserva.new(reserva_params)
     @reserva.datos_de_pasaje_id = @datos_de_pasaje.id
-    
+    @asiento_de_servicio = AsientoDeServicio.update(@datos_de_pasaje.asiento_de_servicio_id, :estado => false)
     
     respond_to do |format|
       if @reserva.save
@@ -65,6 +68,19 @@ class ReservasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def cancelar_reserva
+    @reserva = Reserva.find(params[:id])
+    if @reserva.estado == 'Reservado'
+      @datos_de_pasaje = DatosDePasaje.find(@reserva.datos_de_pasaje_id)
+      @reserva = Reserva.update(@reserva.id, :estado => 'Cancelado')
+      @asiento_de_servicio = AsientoDeServicio.update(@datos_de_pasaje.asiento_de_servicio_id, :estado => true)
+      format.html { redirect_to @reserva, notice: 'Reserva fue cancelada' }
+      format.json { render :show, status: :ok, location: @reserva }
+    end
+  end
+
+  helper_method :cancelar_reserva
 
   private
     # Use callbacks to share common setup or constraints between actions.

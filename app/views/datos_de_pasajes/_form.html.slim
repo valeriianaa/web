@@ -5,8 +5,12 @@
       ul
         - @datos_de_pasaje.errors.full_messages.each do |message|
           li = message
-  .field
-      = f.label 'SOy un dato de pasaje'
-  .field
-      = f.label @datos_de_pasaje.numero
+  field 
+    = f.label 'Nombre del Pasajero: '
+    = f.collection_select :pasajero_id, Pasajero.all, :id, :nombre
+  field 
+    = f.label 'Número de Asiento: '
+    = f.collection_select :asiento_de_servicio_id, AsientoDeServicio.where(estado: true), :id, :nro
+  / .field
+  /     = f.label @datos_de_pasaje.numero
   .actions = f.submit

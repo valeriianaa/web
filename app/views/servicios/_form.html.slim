@@ -15,4 +15,7 @@
   .field
     = f.label :horaLlegada
     = f.time_select :horaLlegada
+  field 
+    = f.label 'Número de Unidad: '
+    = f.collection_select :unidad_id, Unidad.all, :id, :nro
   .actions = f.submit

@@ -18,7 +18,6 @@ class DatosDePasaje < ActiveRecord::Base
 			return self.reserva_id
 		end
 	end
-
 	# def venta_numero
 	# 	if self.id == nil
 	# 		return 0

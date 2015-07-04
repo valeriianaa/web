@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628223545) do
+ActiveRecord::Schema.define(version: 20150703052108) do
+
   create_table "asiento_de_servicios", force: :cascade do |t|
-    t.integer  "nro",        limit: 4
-    t.boolean  "estado",     limit: 1
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "nro",         limit: 4
+    t.boolean  "estado",      limit: 1
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "servicio_id", limit: 4
   end
+
+  add_index "asiento_de_servicios", ["servicio_id"], name: "index_asiento_de_servicios_on_servicio_id", using: :btree
 
   create_table "ciudades", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -105,11 +109,12 @@ ActiveRecord::Schema.define(version: 20150628223545) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "asiento_de_servicios", "servicios"
   add_foreign_key "datos_de_pasajes", "asiento_de_servicios"
   add_foreign_key "datos_de_pasajes", "pasajeros"
   add_foreign_key "datos_de_pasajes", "reservas"
-  add_foreign_key "reservas", "datos_de_pasajes"
   add_foreign_key "paradas", "ciudades"
+  add_foreign_key "reservas", "datos_de_pasajes"
   add_foreign_key "servicios", "itinerarios"
   add_foreign_key "servicios", "tipo_de_servicios"
   add_foreign_key "servicios", "unidades"

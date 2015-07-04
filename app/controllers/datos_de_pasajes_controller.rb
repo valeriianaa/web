@@ -61,7 +61,7 @@ class DatosDePasajesController < ApplicationController
     end
   end
 
-  private
+  #private
     # Use callbacks to share common setup or constraints between actions.
     def set_datos_de_pasaje
       @datos_de_pasaje = DatosDePasaje.find(params[:id])
@@ -69,6 +69,7 @@ class DatosDePasajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def datos_de_pasaje_params
-      params[:datos_de_pasaje]
+      #params.require[:datos_de_pasaje]
+      params.require(:datos_de_pasaje).permit(:asiento_de_servicio_id, :pasajero_id)
     end
 end
