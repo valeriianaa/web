@@ -13,9 +13,9 @@ table
   tbody
     - @servicios.each do |servicio|
       tr
-        td = servicio.fecha
-        td = servicio.horaSalida
-        td = servicio.horaLlegada
+        td = h l servicio.fecha
+        td = h l servicio.horaSalida, :format => :time
+        td = h l servicio.horaLlegada, :format => :time
         td = link_to 'Show', servicio
         / td = link_to 'Edit', edit_servicio_path(servicio)
         / td = link_to 'Destroy', servicio, data: {:confirm => 'Are you sure?'}, :method => :delete
