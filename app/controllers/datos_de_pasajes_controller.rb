@@ -69,6 +69,6 @@ class DatosDePasajesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def datos_de_pasaje_params
       #params.require[:datos_de_pasaje]
-      params.require(:datos_de_pasaje).permit(:asiento_de_servicio_id, :pasajero_id)
+      params.require(:datos_de_pasaje).permit(:asiento_de_servicio_id, :pasajero_id, :servicio_id)
     end
 end

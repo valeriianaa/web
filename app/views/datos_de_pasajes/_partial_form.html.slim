@@ -1,5 +1,3 @@
-= stylesheet_link_tag    'reserva', media: 'all', 'data-turbolinks-track' => true
-
 = form_for @datos_de_pasaje do |f|
   - if @datos_de_pasaje.errors.any?
     #error_explanation
@@ -7,12 +5,51 @@
       ul
         - @datos_de_pasaje.errors.full_messages.each do |message|
           li = message
-  field 
-    = f.label 'Pasajero: '
-    = f.collection_select :pasajero_id, Pasajero.all, :id, :nombre
-  
-  
 
-  field 
-    = f.label 'Número de Asiento: '
-    = f.collection_select :asiento_de_servicio_id, AsientoDeServicio.where(estado: true), :id, :nro
+  div#pasajero.row
+    div.col-md-12
+      p.field 
+        = f.label 'Pasajero: '
+        = f.collection_select :pasajero_id, Pasajero.all, :id, :nombre
+  
+  hr
+  
+  div.row
+    div#paradas_date.col-md-5
+      p.field
+        = f.label 'Parada Origen: '
+        = select_tag "parada_origen", options_from_collection_for_select(Parada.all, "id", "nombre")
+
+      p.field
+        = f.label 'Parada Destino: '
+        = select_tag "parada_destino", options_from_collection_for_select(Parada.all, "id", "nombre")  
+
+      p.field
+        = f.label "Fecha: "
+        = select_date Date.today, :id => "datos_de_pasaje[fecha]", class: "col-md-offset-12"
+      
+      p.field.col-md-offset-4
+        input#servicio name="datos_de_pasaje[servicio_id]" type="hidden"
+        / = hidden_field_tag "servicio_id"
+        span#btnServicio.btn.btn-info.btn-lg Buscar Servicio
+
+    div.col-md-7
+      p.field
+        table.table
+          thead
+            tr
+              th #
+              th Fecha
+              th Hora de Salida
+              th Hora de Llegada
+              th Itinerario
+
+          tbody#servicios
+            td
+            td Seleccione Origen y Destino
+
+      p#asientos.field
+
+      p.field
+        span#btnReservarPasaje.btn.btn-success.btn-lg Reservar Pasaje
+

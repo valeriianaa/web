@@ -1,12 +1,6 @@
-= form_for @reserva do |f|
-  - if @reserva.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@reserva.errors.count, "error")} prohibited this reserva from being saved:"
-      ul
-        - @reserva.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :estado
-    = f.select(:estado, options_for_select([['Reservado'],['Cancelado']]))
-  .actions = f.submit
+.field
+  = label_tag :estado
+  = hidden_field_tag :estado, 'Reservado'
+  / = input_tag :estado, :as => :hidden, :input_html => { :value => "Reservado" }
+  / = hidden_field(:reserva, :estado)
+  / = f.select(:estado, options_for_select([['Reservado'],['Cancelado']]))

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :reservas
   resources :unidades
 
+  match 'servicios_with_paradas_and_date' => 'servicios#servicios_with_paradas_and_date', :via => :post
+  match 'servicio_asientos_disponibles' => 'servicios#asientos_disponibles', :via => :post
+  
   root 'application#index'
 
   #get '/reservas', to: 'reservas#cancelar_reserva', :as => 'cancelar_reserva'

@@ -1,5 +1,5 @@
 class Reserva < ActiveRecord::Base
-    has_one :datos_de_pasajes
+    has_one :datos_de_pasaje
 
     def dato_pasaje_numero
 		if self.datos_de_pasaje_id == nil

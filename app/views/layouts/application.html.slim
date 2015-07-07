@@ -6,8 +6,27 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    div.container-fluid
+    div.container
     
       == render 'layouts/header.html'
       
-      = yield
+      div.row
+        div#menu.btn-group-vertical.col-md-2
+          .btn-group
+            button.btn.btn-default.btn-lg.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button" 
+              | Parametros
+              span.caret
+            ul.dropdown-menu
+              li
+                a.btn.btn-default.btn-lg href=ciudades_path  role="button" Ciudades
+              li
+                a.btn.btn-default.btn-lg href=paradas_path  role="button" Paradas
+
+          a.btn.btn-primary.btn-lg href=itinerarios_path  role="button" Itinerarios
+          a.btn.btn-primary.btn-lg href=servicios_path  role="button" Servicios
+          a.btn.btn-success.btn-lg href= new_reserva_path role="button" Reservar Pasaje
+          / a.btn.btn-primary.btn-lg href="#"  role="button" Vender Pasaje
+
+        div.col-md-10
+          
+          = yield

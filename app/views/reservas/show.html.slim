@@ -1,14 +1,25 @@
 p#notice = notice
 
 p
+  strong Reserva Nro:
+  = @reserva.id
+
+p
   strong Estado:
   = @reserva.estado
 
 p
-  strong Id de dato de pasaje:
-  = @reserva.dato_pasaje_numero
+  strong Nombre del Pasajero:
+  = @reserva.datos_de_pasaje.pasajero.nombre
 
+p
+  strong DNI del Pasajero:
+  = @reserva.datos_de_pasaje.pasajero.dni
+
+p
+  strong Número de Asiento:
+  = @reserva.datos_de_pasaje.asiento_de_servicio.nro
 
 = link_to 'Edit', edit_reserva_path(@reserva)
-'|
-= link_to 'Back', reservas_path
+/ '|
+/ = link_to 'Back', reservas_path

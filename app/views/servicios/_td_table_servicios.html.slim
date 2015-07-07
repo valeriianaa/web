@@ -1,0 +1,8 @@
+- @servicios.each do |servicio|
+  tr
+  	td 
+      input type="radio" id=servicio.id
+    td = h l servicio.fecha
+    td = h l servicio.horaSalida, :format => :time
+    td = h l servicio.horaLlegada, :format => :time
+    td = servicio.itinerario.nombre

@@ -1,31 +1,22 @@
-div.row
-  div#header.page-header align="center"
-    h1 El Tornado Colorado Viajes
-div.row
-  div#menu.btn-group-vertical.col-md-2
-    a.btn.btn-success.btn-lg href= new_reserva_path role="button" Reservar Pasaje
-    a.btn.btn-primary.btn-lg href="#"  role="button" Vender Pasaje
+div.input-group
+  input.form-control type="text"  placeholder="Buscar reserva por DNI del Pasajero..." aria-describedby="basic-addon2"
+  span#basic-addon2.input-group-btn
+    button.btn.btn-default type="button" Buscar
 
-  div.col-md-10
-    div.input-group
-      input.form-control type="text"  placeholder="Buscar reserva por DNI del Pasajero..." aria-describedby="basic-addon2"
-      span#basic-addon2.input-group-btn
-        button.btn.btn-default type="button" Buscar
-    
-    table.table.table-hover
-      thead
-        tr
-          th Nro
-          th
-          th
-          th
+table.table.table-hover
+  thead
+    tr
+      th Nro
+      th
+      th
+      th
 
-      tbody
-        - @reservas.each do |reserva|
-          tr
-            td = reserva.estado
-            td = 'Cancelar'
-            td = 'Vender'
-            # td = link_to 'Cancelar', 
-            # td = link_to 'Vender', 
-            td = link_to 'Ver', reserva
+  tbody
+    - @reservas.each do |reserva|
+      tr
+        td = reserva.estado
+        td = 'Cancelar'
+        td = 'Vender'
+        # td = link_to 'Cancelar', 
+        # td = link_to 'Vender', 
+        td = link_to 'Ver', reserva

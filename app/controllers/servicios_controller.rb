@@ -32,10 +32,10 @@ class ServiciosController < ApplicationController
     respond_to do |format|
       # Creacion de Asientos de Servicio para el Servicio recien creado
       t = @servicio.transaction do
+        @servicio.save
         for i in 1..@servicio.unidad.cantAsientos
           AsientoDeServicio.create(nro: i, estado: true, servicio_id: @servicio.id)
         end
-        @servicio.save
       end
       if t
         format.html { redirect_to @servicio, notice: 'Servicio was successfully created.' }
@@ -69,6 +69,20 @@ class ServiciosController < ApplicationController
       format.html { redirect_to servicios_url, notice: 'Servicio was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def asientos_disponibles
+    puts 'asientos_disponibles > params[:id]', params[:id]
+    @asientos = Servicio.asientosDisponibles(params[:id])
+    render :partial => 'asientos_disponibles'
+  end
+
+  def servicios_with_paradas_and_date
+    po = Parada.find(params[:parada_origen])
+    pd = Parada.find(params[:parada_destino])
+    fecha = Time.new(params[:date][:year], params[:date][:month], params[:date][:day]).to_date
+    @servicios = Servicio.buscarServicio(po, pd, fecha)
+    render :partial => 'td_table_servicios'
   end
 
   private

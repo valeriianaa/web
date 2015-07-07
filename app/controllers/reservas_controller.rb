@@ -27,15 +27,31 @@ class ReservasController < ApplicationController
   # POST /reservas
   # POST /reservas.json
   def create
-    @dp = DatosDePasajesController.new
-    #@datos_de_pasaje = DatosDePasaje.create(asiento_de_servicio_id: 5, pasajero_id: 1)
-    @datos_de_pasaje = @dp.create
+    puts 'params[:datos_de_pasaje]', params[:datos_de_pasaje]
+    puts 'params[:reserva]', params[:reserva]
+    puts 'reserva_params', reserva_params
+
+    p = params[:datos_de_pasaje][:pasajero_id]
+    # s = params[:datos_de_pasaje][:servicio_id]
+    asiento = params[:datos_de_pasaje][:asiento_de_servicio_id]
+
+    @dp = DatosDePasaje.new(pasajero_id:p, asiento_de_servicio_id:asiento)
     @reserva = Reserva.new(reserva_params)
-    @reserva.datos_de_pasaje_id = @datos_de_pasaje.id
-    @asiento_de_servicio = AsientoDeServicio.update(@datos_de_pasaje.asiento_de_servicio_id, :estado => false)
-    
+    @reserva.datos_de_pasaje = @dp
+    @asiento = AsientoDeServicio.find(params[:datos_de_pasaje][:asiento_de_servicio_id])
+    @dp.asiento_de_servicio = @asiento
+    @asiento.estado = false
+
+    # @reserva.save
+
+    t = @reserva.transaction do
+      @dp.save
+      @reserva.save
+      @asiento.save
+    end
+
     respond_to do |format|
-      if @reserva.save
+      if t
         format.html { redirect_to @reserva, notice: 'Reserva was successfully created.' }
         format.json { render :show, status: :created, location: @reserva }
       else

@@ -1,0 +1,3 @@
+= label_tag 'Número de Asiento: '
+/ = collection_select :asiento_de_servicio_id, Servicio.asientosDisponibles(@servicio), :id, :nro
+= select_tag "datos_de_pasaje[asiento_de_servicio_id]", options_from_collection_for_select(@asientos, "id", "nro")  

@@ -1,7 +1,22 @@
-h1 New reserva
+div.row
+  div#header align="center"
+    h1 Registrar Datos - Reservar Pasaje
 
-== render 'datos_de_pasajes/partial_form.html'
+div.row
+  = form_for @reserva do |f|
+    - if @reserva.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@reserva.errors.count, "error")} prohibited this reserva from being saved:"
+        ul
+          - @reserva.errors.full_messages.each do |message|
+            li = message
 
-== render 'form'
+    .field
+      / = label_tag :estado
+      = hidden_field_tag "reserva[estado]", 'Reservado'
 
-= link_to 'Back', reservas_path
+    / .actions = f.submit
+    == render 'datos_de_pasajes/partial_form.html'
+
+
+    / = link_to 'Back', reservas_path
