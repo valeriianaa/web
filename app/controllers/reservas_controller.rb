@@ -27,9 +27,9 @@ class ReservasController < ApplicationController
   # POST /reservas
   # POST /reservas.json
   def create
-    #@dp = DatosDePasajesController.new
-    @datos_de_pasaje = DatosDePasaje.create(asiento_de_servicio_id: 5, pasajero_id: 1)
-    #@datos_de_pasaje = @dp.create
+    @dp = DatosDePasajesController.new
+    #@datos_de_pasaje = DatosDePasaje.create(asiento_de_servicio_id: 5, pasajero_id: 1)
+    @datos_de_pasaje = @dp.create
     @reserva = Reserva.new(reserva_params)
     @reserva.datos_de_pasaje_id = @datos_de_pasaje.id
     @asiento_de_servicio = AsientoDeServicio.update(@datos_de_pasaje.asiento_de_servicio_id, :estado => false)
