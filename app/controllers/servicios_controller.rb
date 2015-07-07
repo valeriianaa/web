@@ -35,6 +35,7 @@ class ServiciosController < ApplicationController
         for i in 1..@servicio.unidad.cantAsientos
           AsientoDeServicio.create(nro: i, estado: true, servicio_id: @servicio.id)
         end
+        @servicio.save
       end
       if t
         format.html { redirect_to @servicio, notice: 'Servicio was successfully created.' }

@@ -15,6 +15,7 @@ class ItinerariosController < ApplicationController
   # GET /itinerarios/new
   def new
     @itinerario = Itinerario.new
+    @itinerario.paradas.build
   end
 
   # GET /itinerarios/1/edit
@@ -24,6 +25,7 @@ class ItinerariosController < ApplicationController
   # POST /itinerarios
   # POST /itinerarios.json
   def create
+    # puts itinerario_params[:parada_ids]
     @itinerario = Itinerario.new(itinerario_params)
 
     respond_to do |format|
@@ -40,6 +42,7 @@ class ItinerariosController < ApplicationController
   # PATCH/PUT /itinerarios/1
   # PATCH/PUT /itinerarios/1.json
   def update
+    params[:itinerario][:parada_ids] ||= []
     respond_to do |format|
       if @itinerario.update(itinerario_params)
         format.html { redirect_to @itinerario, notice: 'Itinerario was successfully updated.' }
@@ -61,6 +64,12 @@ class ItinerariosController < ApplicationController
     end
   end
 
+  def sort
+    params[:itinerario][:parada_ids].each_with_index do |id, index|
+      Itinerario.Update_all({position:index}, {id:id})
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_itinerario
@@ -69,6 +78,6 @@ class ItinerariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def itinerario_params
-      params.require(:itinerario).permit(:nombre)
+      params.require(:itinerario).permit(:nombre, :parada_ids => [])
     end
 end

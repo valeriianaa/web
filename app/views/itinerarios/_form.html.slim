@@ -9,4 +9,11 @@
   .field
     = f.label :nombre
     = f.text_field :nombre
+
+  ul#sortable
+    - for parada in Parada.all
+      = content_tag_for :li, parada do
+        = check_box_tag "itinerario[parada_ids][]", parada.id, @itinerario.paradas.include?(parada)
+        = parada.nombre
+
   .actions = f.submit

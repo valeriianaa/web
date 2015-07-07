@@ -1,4 +1,5 @@
 class Parada < ActiveRecord::Base
-	has_and_belongs_to_many  :itinerarios
 	belongs_to :ciudad
+	has_many :itinerario_paradas
+	has_many :itinerarios, :through => :itinerario_paradas
 end

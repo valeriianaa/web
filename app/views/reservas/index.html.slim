@@ -19,6 +19,7 @@ table
         td = link_to 'Destroy', reserva, data: {:confirm => 'Are you sure?'}, :method => :delete
         if reserva.estado == 'Reservado'
           td = button_to 'Cancelar', reserva, data: {:confirm => 'Está seguro que quiere Cancelar la Reserva?'}, @reservas.cancelar_reserva
+        end
 br
 
 = link_to 'New Reserva', new_reserva_path

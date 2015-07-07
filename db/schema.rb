@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703052108) do
+ActiveRecord::Schema.define(version: 20150707023336) do
 
   create_table "asiento_de_servicios", force: :cascade do |t|
     t.integer  "nro",         limit: 4
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 20150703052108) do
   add_index "datos_de_pasajes", ["pasajero_id"], name: "index_datos_de_pasajes_on_pasajero_id", using: :btree
   add_index "datos_de_pasajes", ["reserva_id"], name: "index_datos_de_pasajes_on_reserva_id", using: :btree
 
+  create_table "itinerario_paradas", force: :cascade do |t|
+    t.integer  "itinerario_id", limit: 4
+    t.integer  "parada_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "itinerario_paradas", ["itinerario_id"], name: "index_itinerario_paradas_on_itinerario_id", using: :btree
+  add_index "itinerario_paradas", ["parada_id"], name: "index_itinerario_paradas_on_parada_id", using: :btree
+
   create_table "itinerarios", force: :cascade do |t|
     t.string   "nombre",     limit: 255
     t.datetime "created_at",             null: false
@@ -50,6 +60,7 @@ ActiveRecord::Schema.define(version: 20150703052108) do
   create_table "itinerarios_paradas", id: false, force: :cascade do |t|
     t.integer "itinerario_id", limit: 4
     t.integer "parada_id",     limit: 4
+    t.integer "position",      limit: 4
   end
 
   add_index "itinerarios_paradas", ["itinerario_id"], name: "index_itinerarios_paradas_on_itinerario_id", using: :btree

@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Pretty Template Engine
 gem 'slim-rails'
 
+gem 'jquery-ui-rails'
+
 gem 'seed_dump'
 
 # Use ActiveModel has_secure_password
