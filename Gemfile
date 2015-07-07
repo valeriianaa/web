@@ -27,6 +27,8 @@ gem 'slim-rails'
 
 gem 'jquery-ui-rails'
 
+gem 'bootstrap-sass', '~> 3.3.5'
+
 gem 'seed_dump'
 
 # Use ActiveModel has_secure_password

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :asiento_de_servicios
   resources :reservas
   resources :unidades
+
+  root 'application#index'
+
   #get '/reservas', to: 'reservas#cancelar_reserva', :as => 'cancelar_reserva'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
