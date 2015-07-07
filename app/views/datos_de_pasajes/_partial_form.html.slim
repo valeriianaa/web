@@ -1,0 +1,18 @@
+= stylesheet_link_tag    'reserva', media: 'all', 'data-turbolinks-track' => true
+
+= form_for @datos_de_pasaje do |f|
+  - if @datos_de_pasaje.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@datos_de_pasaje.errors.count, "error")} prohibited this datos_de_pasaje from being saved:"
+      ul
+        - @datos_de_pasaje.errors.full_messages.each do |message|
+          li = message
+  field 
+    = f.label 'Pasajero: '
+    = f.collection_select :pasajero_id, Pasajero.all, :id, :nombre
+  
+  
+
+  field 
+    = f.label 'Número de Asiento: '
+    = f.collection_select :asiento_de_servicio_id, AsientoDeServicio.where(estado: true), :id, :nro

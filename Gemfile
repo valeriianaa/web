@@ -29,6 +29,8 @@ gem 'jquery-ui-rails'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
+gem "select2-rails"
+
 gem 'seed_dump'
 
 # Use ActiveModel has_secure_password
