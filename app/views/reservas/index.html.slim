@@ -1,6 +1,5 @@
-include ReservasController
-
 h1 Listing reservas
+
 
 table
   thead
@@ -18,7 +17,7 @@ table
         td = link_to 'Edit', edit_reserva_path(reserva)
         td = link_to 'Destroy', reserva, data: {:confirm => 'Are you sure?'}, :method => :delete
         if reserva.estado == 'Reservado'
-          td = button_to 'Cancelar', reserva, data: {:confirm => 'Está seguro que quiere Cancelar la Reserva?'}, @reservas.cancelar_reserva
+          td = button_to 'Cancelar', reserva, data: {:confirm => 'Está seguro que quiere Cancelar la Reserva?'}, :method => ReservasController.new.cancelar_reserva
 br
 
 = link_to 'New Reserva', new_reserva_path
