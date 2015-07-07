@@ -29,23 +29,21 @@ class ServiciosController < ApplicationController
   # # POST /servicios.json
   def create
     @servicio = Servicio.new(servicio_params)
-
     respond_to do |format|
-      if @servicio.save
+      # Creacion de Asientos de Servicio para el Servicio recien creado
+      t = @servicio.transaction do
+        for i in 1..@servicio.unidad.cantAsientos
+          AsientoDeServicio.create(nro: i, estado: true, servicio_id: @servicio.id)
+        end
+      end
+      if t
         format.html { redirect_to @servicio, notice: 'Servicio was successfully created.' }
         format.json { render :show, status: :created, location: @servicio }
-        @unidad = Unidad.find(@servicio.unidad_id)
-        @cantidad_asientos = @unidad.cantAsientos
-        for i in 1..@cantidad_asientos
-          asiento = AsientoDeServicio.create(nro: i, estado: true, servicio_id: @servicio.id)
-        end
       else
         format.html { render :new }
         format.json { render json: @servicio.errors, status: :unprocessable_entity }
       end
-    end
-
-    
+    end   
   end
 
   # PATCH/PUT /servicios/1
@@ -80,6 +78,6 @@ class ServiciosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def servicio_params
-      params.require(:servicio).permit(:fecha, :horaSalida, :horaLlegada, :unidad_id)
+      params.require(:servicio).permit(:fecha, :horaSalida, :horaLlegada, :unidad_id, :itinerario_id)
     end
 end

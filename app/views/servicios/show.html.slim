@@ -9,6 +9,12 @@ p
 p
   strong Horallegada:
   = @servicio.horaLlegada
+p 
+  strong Número de Unidad:
+  = @servicio.unidad.nro
+p
+  strong Itinerario:
+  = @servicio.itinerario.nombre
 
 = link_to 'Edit', edit_servicio_path(@servicio)
 '|
